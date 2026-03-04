@@ -1,9 +1,12 @@
 "use client";
 
+import type { ReactElement } from "react";
 import { SignupForm } from "@/components/signup-form";
 import { registerUser } from "./service";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import AuthLayout from "../layout";
+
 import Link from "next/link";
 
 export default function RegisterPage() {

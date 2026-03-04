@@ -94,4 +94,10 @@ describe("RegisterPage", () => {
       expect(mockPush).not.toHaveBeenCalled();
     });
   });
+
+  it('should not render the Navbar component', () => {
+    render(<RegisterPage />);
+    expect(screen.queryByTestId('navbar')).not.toBeInTheDocument();
+  });
 });
+

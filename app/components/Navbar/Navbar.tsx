@@ -16,7 +16,7 @@ const Navbar = (props: Props) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
-    <NavigationMenu className="shadow-md w-full flex-col bg-[#1d1d1d] text-white py-2">
+    <NavigationMenu data-testid="navbar" className="shadow-md w-full flex-col bg-[#1d1d1d] text-white py-2">
       <NavigationMenuList className="w-screen flex justify-between px-6 items-center">
         <NavigationMenuItem>
           <Link href="/" passHref>
@@ -58,7 +58,7 @@ const Navbar = (props: Props) => {
       </NavigationMenuList>
       {/* Mobile navigation menu */}
       {isMenuOpen && (
-        <div className="md:hidden flex flex-col items-center pb-4 bg-[#1d1d1d]">
+        <div data-testid="mobile-menu" className="md:hidden flex flex-col items-center pb-4 bg-[#1d1d1d]">
           <NavigationMenuItem className="w-full">
             <Link
               href="/pages/auth/login"
