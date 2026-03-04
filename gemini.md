@@ -40,7 +40,7 @@ Only suggest features inside this scope unless explicitly asked otherwise.
 ### Authentication
 
 - User sign up / sign in
-- Email + password or OAuth (Google/GitHub)
+- Email + password
 - Basic session handling (JWT token valid for 24 hours long)
 - Email confirmation with resend api
 
@@ -124,6 +124,7 @@ ORM:
 Gemini should follow these principles when suggesting code or architecture:
 
 - **Keep it simple**
+- TDD - do first the tests and then implement the solution
 - Prefer boring, proven solutions
 - Avoid premature optimization
 - Avoid overengineering
@@ -133,6 +134,7 @@ Gemini should follow these principles when suggesting code or architecture:
 
 ## Code Style Guidelines
 
+- TDD
 - MVC
 - Clear and readable code
 - Small functions
@@ -151,6 +153,7 @@ High-level entities only:
   - email
   - phone
   - createdAt
+  - password
 
 - Post
   - id
@@ -195,3 +198,24 @@ When in doubt, choose:
 > The simplest solution that works today.
 
 This project values **learning and validation** over perfection.
+
+Do not delete the tests after completing the tasks
+
+Use shadcn components for a better pattern
+
+Don't change the base pallete of this project
+Navbar's color should be #1d1d1d
+body's color should be black
+
+You should create first the tests, then implement the task
+
+Never remove the spec/test file, it's meant to be ran everytime I deploy the app
+
+The app must be done responsively
+
+You again removed the Test file after completing the task. You should keep it
+
+### Documentation
+
+- Navbar
+  Logo Sign in / Sign up option
