@@ -7,16 +7,20 @@ import { Input } from "@/components/ui/input";
 import { useState } from "react";
 
 interface SignupFormProps extends React.ComponentProps<"form"> {
-  onRegister: (email: string, password: string) => Promise<any>;
+  onRegister: (
+    email: string,
+    password: string,
+    confirmPassword: string,
+  ) => Promise<any>;
   onSuccess: () => void;
-  onError: (message: string) => void;
+  onRegistrationError: (message: string) => void;
 }
 
 export function SignupForm({
   className,
   onRegister,
   onSuccess,
-  onError,
+  onRegistrationError,
   ...props
 }: SignupFormProps) {
   const [email, setEmail] = useState("");
@@ -28,16 +32,16 @@ export function SignupForm({
     e.preventDefault();
     setLoading(true);
     if (password !== confirmPassword) {
-      onError("Passwords do not match.");
+      onRegistrationError("As senhas não coincidem.");
       setLoading(false);
       return;
     }
 
     try {
-      await onRegister(email, password);
+      await onRegister(email, password, confirmPassword);
       onSuccess();
     } catch (error: any) {
-      onError(error.message || "Registration failed.");
+      onRegistrationError(error.message || "O registro falhou.");
     } finally {
       setLoading(false);
     }
@@ -45,51 +49,61 @@ export function SignupForm({
 
   return (
     <form
-      className={cn("flex flex-col gap-6", className)}
+      className={cn("flex flex-col gap-2", className)}
       onSubmit={handleSubmit}
       {...props}
     >
       <FieldGroup>
         <div className="flex flex-col items-center gap-1 text-center">
-          <h1 className="text-2xl font-bold">Create your account</h1>
+          <h1 className="text-2xl font-bold">Crie sua conta</h1>
           <p className="text-sm text-balance text-muted-foreground">
-            Enter your details below to create your account
+            Insira seus dados abaixo para criar sua conta
           </p>
         </div>
         <Field>
-          <FieldLabel htmlFor="email">Email</FieldLabel>
+          <FieldLabel htmlFor="email">E-mail</FieldLabel>
           <Input
             id="email"
             type="email"
-            placeholder="m@example.com"
+            placeholder="email@exemplo.com"
             required
             value={email}
             onChange={(e) => setEmail(e.target.value)}
+            className="rounded-lg"
           />
         </Field>
         <Field>
-          <FieldLabel htmlFor="password">Password</FieldLabel>
+          <FieldLabel htmlFor="password">Senha</FieldLabel>
           <Input
             id="password"
             type="password"
+            placeholder="senha-forte"
             required
             value={password}
             onChange={(e) => setPassword(e.target.value)}
+            className="rounded-lg"
           />
         </Field>
         <Field>
-          <FieldLabel htmlFor="confirm-password">Confirm Password</FieldLabel>
+          <FieldLabel htmlFor="confirm-password">Confirme sua Senha</FieldLabel>
           <Input
             id="confirm-password"
             type="password"
+            placeholder="confirme-sua-senha-forte"
             required
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
+            className="rounded-lg"
           />
         </Field>
         <Field>
-          <Button type="submit" disabled={loading}>
-            {loading ? "Signing Up..." : "Sign Up"}
+          <Button
+            type="submit"
+            className="bg-green-600 hover:bg-green-700"
+            variant={"default"}
+            disabled={loading}
+          >
+            {loading ? "Criando conta..." : "Criar Conta"}
           </Button>
         </Field>
       </FieldGroup>

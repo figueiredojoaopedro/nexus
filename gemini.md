@@ -215,6 +215,8 @@ The app must be done responsively
 
 You again removed the Test file after completing the task. You should keep it
 
+The app must be in brazillian portuguese - all strings must be in pt-br
+
 ### Documentation
 
 - Navbar

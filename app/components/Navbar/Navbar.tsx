@@ -16,7 +16,10 @@ const Navbar = (props: Props) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
-    <NavigationMenu data-testid="navbar" className="shadow-md w-full flex-col bg-[#1d1d1d] text-white py-2">
+    <NavigationMenu
+      data-testid="navbar"
+      className="shadow-md w-full flex-col bg-[#1d1d1d] text-white py-2"
+    >
       <NavigationMenuList className="w-screen flex justify-between px-6 items-center">
         <NavigationMenuItem>
           <Link href="/" passHref>
@@ -45,20 +48,23 @@ const Navbar = (props: Props) => {
           <NavigationMenuItem>
             <Link href="/pages/auth/login" passHref>
               <Button variant="ghost" className="text-white">
-                Sign In
+                Entrar
               </Button>
             </Link>
           </NavigationMenuItem>
           <NavigationMenuItem>
             <Link href="/pages/auth/register" passHref>
-              <Button>Sign Up</Button>
+              <Button>Registrar</Button>
             </Link>
           </NavigationMenuItem>
         </div>
       </NavigationMenuList>
       {/* Mobile navigation menu */}
       {isMenuOpen && (
-        <div data-testid="mobile-menu" className="md:hidden flex flex-col items-center pb-4 bg-[#1d1d1d]">
+        <div
+          data-testid="mobile-menu"
+          className="md:hidden flex flex-col items-center pb-4 bg-[#1d1d1d]"
+        >
           <NavigationMenuItem className="w-full">
             <Link
               href="/pages/auth/login"
@@ -70,7 +76,7 @@ const Navbar = (props: Props) => {
                 className="text-white w-full py-2"
                 onClick={() => setIsMenuOpen(false)}
               >
-                Sign In
+                Entrar
               </Button>
             </Link>
           </NavigationMenuItem>
@@ -84,7 +90,7 @@ const Navbar = (props: Props) => {
                 className="w-full py-2"
                 onClick={() => setIsMenuOpen(false)}
               >
-                Sign Up
+                Cadastrar
               </Button>
             </Link>
           </NavigationMenuItem>
