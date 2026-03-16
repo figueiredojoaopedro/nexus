@@ -19,7 +19,7 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="w-full max-w-md p-4 sm:p-6 md:p-8 bg-gray-900 rounded-lg shadow-lg shadow-white/30 text-white">
+    <div className="w-full max-w-md p-4 sm:p-6 md:p-8 bg-gray-900 rounded-lg shadow-lg shadow-blue-400/60 text-white">
       <LoginForm
         onLogin={loginUser}
         onSuccess={handleLoginSuccess}
@@ -33,6 +33,14 @@ export default function LoginPage() {
           className="underline underline-offset-4 hover:text-primary border border-gray-700 px-4 py-2 rounded-md"
         >
           Criar Conta
+        </Link>
+      </div>
+      <div className="flex justify-center text-sm mt-3">
+        <Link
+          href="/pages/auth/forgot-password"
+          className=" text-muted-foreground hover:text-primary underline underline-offset-4"
+        >
+          Esqueceu a senha?
         </Link>
       </div>
     </div>
