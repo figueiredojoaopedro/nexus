@@ -26,19 +26,19 @@ describe("RegisterPage", () => {
 
   it("should render the registration form", () => {
     render(<RegisterPage />);
-    expect(screen.getByLabelText("Email")).toBeInTheDocument();
-    expect(screen.getByLabelText("Password")).toBeInTheDocument();
-    expect(screen.getByLabelText("Confirm Password")).toBeInTheDocument();
+    expect(screen.getByLabelText("E-mail")).toBeInTheDocument();
+    expect(screen.getByLabelText("Senha")).toBeInTheDocument();
+    expect(screen.getByLabelText("Confirme sua Senha")).toBeInTheDocument();
     expect(
-      screen.getByRole("button", { name: /sign up/i }),
+      screen.getByRole("button", { name: /criar conta/i }),
     ).toBeInTheDocument();
   });
 
   it("should allow typing into email and password fields", () => {
     render(<RegisterPage />);
-    const emailInput = screen.getByLabelText("Email");
-    const passwordInput = screen.getByLabelText("Password");
-    const confirmPasswordInput = screen.getByLabelText("Confirm Password");
+    const emailInput = screen.getByLabelText("E-mail");
+    const passwordInput = screen.getByLabelText("Senha");
+    const confirmPasswordInput = screen.getByLabelText("Confirme sua Senha");
 
     fireEvent.change(emailInput, { target: { value: "test@example.com" } });
     fireEvent.change(passwordInput, { target: { value: "password123" } });
@@ -58,20 +58,21 @@ describe("RegisterPage", () => {
 
     render(<RegisterPage />);
 
-    fireEvent.change(screen.getByLabelText("Email"), {
+    fireEvent.change(screen.getByLabelText("E-mail"), {
       target: { value: "test@example.com" },
     });
-    fireEvent.change(screen.getByLabelText("Password"), {
+    fireEvent.change(screen.getByLabelText("Senha"), {
       target: { value: "password123" },
     });
-    fireEvent.change(screen.getByLabelText("Confirm Password"), {
+    fireEvent.change(screen.getByLabelText("Confirme sua Senha"), {
       target: { value: "password123" },
     });
-    fireEvent.click(screen.getByRole("button", { name: /sign up/i }));
+    fireEvent.click(screen.getByRole("button", { name: /criar conta/i }));
 
     await waitFor(() => {
       expect(registerService.registerUser).toHaveBeenCalledWith(
         "test@example.com",
+        "password123",
         "password123",
       );
       expect(mockPush).toHaveBeenCalledWith("/pages/auth/login");
@@ -79,23 +80,23 @@ describe("RegisterPage", () => {
   });
 
   it("should display an error message on failed registration", async () => {
-    const errorMessage = "Registration failed";
+    const errorMessage = "O registro falhou.";
     (registerService.registerUser as jest.Mock).mockRejectedValueOnce(
       new Error(errorMessage),
     );
 
     render(<RegisterPage />);
 
-    fireEvent.change(screen.getByLabelText("Email"), {
+    fireEvent.change(screen.getByLabelText("E-mail"), {
       target: { value: "test@example.com" },
     });
-    fireEvent.change(screen.getByLabelText("Password"), {
+    fireEvent.change(screen.getByLabelText("Senha"), {
       target: { value: "password123" },
     });
-    fireEvent.change(screen.getByLabelText("Confirm Password"), {
+    fireEvent.change(screen.getByLabelText("Confirme sua Senha"), {
       target: { value: "password123" },
     });
-    fireEvent.click(screen.getByRole("button", { name: /sign up/i }));
+    fireEvent.click(screen.getByRole("button", { name: /criar conta/i }));
 
     await waitFor(() => {
       expect(screen.getByText(errorMessage)).toBeInTheDocument();
@@ -106,19 +107,19 @@ describe("RegisterPage", () => {
   it("should display an error message if passwords do not match", async () => {
     render(<RegisterPage />);
 
-    fireEvent.change(screen.getByLabelText("Email"), {
+    fireEvent.change(screen.getByLabelText("E-mail"), {
       target: { value: "test@example.com" },
     });
-    fireEvent.change(screen.getByLabelText("Password"), {
+    fireEvent.change(screen.getByLabelText("Senha"), {
       target: { value: "password123" },
     });
-    fireEvent.change(screen.getByLabelText("Confirm Password"), {
+    fireEvent.change(screen.getByLabelText("Confirme sua Senha"), {
       target: { value: "different-password" },
     });
-    fireEvent.click(screen.getByRole("button", { name: /sign up/i }));
+    fireEvent.click(screen.getByRole("button", { name: /criar conta/i }));
 
     await waitFor(() => {
-      expect(screen.getByText("Passwords do not match.")).toBeInTheDocument();
+      expect(screen.getByText("As senhas não coincidem.")).toBeInTheDocument();
       expect(registerService.registerUser).not.toHaveBeenCalled();
       expect(mockPush).not.toHaveBeenCalled();
     });

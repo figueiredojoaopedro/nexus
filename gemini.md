@@ -217,6 +217,9 @@ You again removed the Test file after completing the task. You should keep it
 
 The app must be in brazillian portuguese - all strings must be in pt-br
 
+Cards in this app must follow this style:
+bg-gray-900 rounded-lg shadow-lg shadow-blue-400/60 text-white
+
 ### Documentation
 
 - Navbar
