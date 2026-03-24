@@ -3,6 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "services:up": "docker compose up -d && npm run dev",
+    "services:down": "docker compose down",
     "dev": "next dev",
     "build": "next build",
     "start": "next start",

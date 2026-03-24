@@ -220,6 +220,11 @@ The app must be in brazillian portuguese - all strings must be in pt-br
 Cards in this app must follow this style:
 bg-gray-900 rounded-lg shadow-lg shadow-blue-400/60 text-white
 
+docker-compose file to create dev db instance
+.env contains the variables that must be hidden and not uploaded to github
+
+.example.env is the equivalent for the .env, you can place the variables there for me to change manually the .env
+
 ### Documentation
 
 - Navbar
